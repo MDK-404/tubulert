@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tubulert/screens/onboarding_screen1.dart';
+import 'package:tubulert/widget/style.dart';
+import 'package:tubulert/widget/texts.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -31,11 +33,8 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: const Color(0xFFB70063),
       body: Center(
         child: Text(
-          'Tubulert',
-          style: GoogleFonts.jost(
-            textStyle: const TextStyle(
-                fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
+          Texts.appName,
+          style: Styles.appNameStyle,
         ),
       ),
     );
