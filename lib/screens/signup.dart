@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:tubulert/screens/login.dart';
 import 'package:tubulert/widget/style.dart';
 import 'package:tubulert/widget/texts.dart';
+import 'package:tubulert/widget/textfield_widget.dart';
 
 class SignupPage extends StatefulWidget {
   @override
@@ -27,52 +28,10 @@ class _SignupPageState extends State<SignupPage> {
     super.dispose();
   }
 
-  Widget buildTextField(
-      String labelText, TextEditingController controller, bool isPassword) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          labelText,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.pink,
-          ),
-        ),
-        SizedBox(height: 5),
-        TextField(
-          controller: controller,
-          obscureText: isPassword ? _isPasswordHidden : false,
-          decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.pink),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            suffixIcon: isPassword
-                ? GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _isPasswordHidden = !_isPasswordHidden;
-                      });
-                    },
-                    child: Icon(
-                      _isPasswordHidden
-                          ? Icons.visibility
-                          : Icons.visibility_off,
-                      color: Colors.grey,
-                    ),
-                  )
-                : null,
-          ),
-        ),
-        SizedBox(height: 10),
-      ],
-    );
+  void togglePasswordVisibility() {
+    setState(() {
+      _isPasswordHidden = !_isPasswordHidden;
+    });
   }
 
   @override
@@ -92,10 +51,34 @@ class _SignupPageState extends State<SignupPage> {
                   style: Styles.signupStyle,
                 ),
                 const SizedBox(height: 20),
-                buildTextField('First Name', _firstNameController, false),
-                buildTextField('Last Name', _lastNameController, false),
-                buildTextField('Your Email Address*', _emailController, false),
-                buildTextField('Your Password', _passwordController, true),
+                CustomWidgets.buildTextField(
+                  'First Name',
+                  _firstNameController,
+                  false,
+                  _isPasswordHidden,
+                  togglePasswordVisibility,
+                ),
+                CustomWidgets.buildTextField(
+                  'Last Name',
+                  _lastNameController,
+                  false,
+                  _isPasswordHidden,
+                  togglePasswordVisibility,
+                ),
+                CustomWidgets.buildTextField(
+                  'Your Email Address*',
+                  _emailController,
+                  false,
+                  _isPasswordHidden,
+                  togglePasswordVisibility,
+                ),
+                CustomWidgets.buildTextField(
+                  'Your Password',
+                  _passwordController,
+                  true,
+                  _isPasswordHidden,
+                  togglePasswordVisibility,
+                ),
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
@@ -110,6 +93,21 @@ class _SignupPageState extends State<SignupPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
                     backgroundColor: const Color(0xFFB70063),
+                  ),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()));
+                  },
+                  child: Text(
+                    'Already have an Account',
+                    style: Styles.signupPage,
                   ),
                 )
               ],
