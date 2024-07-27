@@ -1,19 +1,90 @@
-// textfield_widget.dart
+// // textfield_widget.dart
+
+// import 'package:flutter/material.dart';
+
+// class CustomWidgets {
+//   static Widget buildTextField(
+//       String labelText,
+//       TextEditingController controller,
+//       bool isPassword,
+//       bool isPasswordHidden,
+//       Function togglePasswordVisibility) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Text(
+//           labelText,
+//           style: TextStyle(
+//             fontSize: 16,
+//             fontWeight: FontWeight.bold,
+//             color: Colors.pink,
+//           ),
+//         ),
+//         SizedBox(height: 5),
+//         TextField(
+//           controller: controller,
+//           obscureText: isPassword ? isPasswordHidden : false,
+//           decoration: InputDecoration(
+//             enabledBorder: OutlineInputBorder(
+//               borderSide: BorderSide(color: Colors.grey),
+//               borderRadius: BorderRadius.circular(8),
+//             ),
+//             focusedBorder: OutlineInputBorder(
+//               borderSide: BorderSide(color: Colors.pink),
+//               borderRadius: BorderRadius.circular(8),
+//             ),
+//             suffixIcon: isPassword
+//                 ? GestureDetector(
+//                     onTap: () => togglePasswordVisibility(),
+//                     child: Icon(
+//                       isPasswordHidden
+//                           ? Icons.visibility
+//                           : Icons.visibility_off,
+//                       color: Colors.grey,
+//                     ),
+//                   )
+//                 : null,
+//           ),
+//         ),
+//         SizedBox(height: 10),
+//       ],
+//     );
+//   }
+// }
 
 import 'package:flutter/material.dart';
 
-class CustomWidgets {
-  static Widget buildTextField(
-      String labelText,
-      TextEditingController controller,
-      bool isPassword,
-      bool isPasswordHidden,
-      Function togglePasswordVisibility) {
+class CustomTextField extends StatefulWidget {
+  final String labelText;
+  final TextEditingController controller;
+  final bool isPassword;
+
+  CustomTextField({
+    required this.labelText,
+    required this.controller,
+    required this.isPassword,
+  });
+
+  @override
+  _CustomTextFieldState createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  bool _isPasswordHidden = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _isPasswordHidden = !_isPasswordHidden;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          labelText,
+          widget.labelText,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -22,8 +93,8 @@ class CustomWidgets {
         ),
         SizedBox(height: 5),
         TextField(
-          controller: controller,
-          obscureText: isPassword ? isPasswordHidden : false,
+          controller: widget.controller,
+          obscureText: widget.isPassword ? _isPasswordHidden : false,
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey),
@@ -33,11 +104,11 @@ class CustomWidgets {
               borderSide: BorderSide(color: Colors.pink),
               borderRadius: BorderRadius.circular(8),
             ),
-            suffixIcon: isPassword
+            suffixIcon: widget.isPassword
                 ? GestureDetector(
-                    onTap: () => togglePasswordVisibility(),
+                    onTap: _togglePasswordVisibility,
                     child: Icon(
-                      isPasswordHidden
+                      _isPasswordHidden
                           ? Icons.visibility
                           : Icons.visibility_off,
                       color: Colors.grey,

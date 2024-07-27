@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:tubulert/screens/login.dart';
 import 'package:tubulert/widget/style.dart';
 import 'package:tubulert/widget/texts.dart';
@@ -16,7 +15,6 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  bool _isPasswordHidden = true;
 
   @override
   void dispose() {
@@ -26,12 +24,6 @@ class _SignupPageState extends State<SignupPage> {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
-  }
-
-  void togglePasswordVisibility() {
-    setState(() {
-      _isPasswordHidden = !_isPasswordHidden;
-    });
   }
 
   @override
@@ -51,33 +43,25 @@ class _SignupPageState extends State<SignupPage> {
                   style: Styles.signupStyle,
                 ),
                 const SizedBox(height: 20),
-                CustomWidgets.buildTextField(
-                  'First Name',
-                  _firstNameController,
-                  false,
-                  _isPasswordHidden,
-                  togglePasswordVisibility,
+                CustomTextField(
+                  labelText: 'First Name',
+                  controller: _firstNameController,
+                  isPassword: false,
                 ),
-                CustomWidgets.buildTextField(
-                  'Last Name',
-                  _lastNameController,
-                  false,
-                  _isPasswordHidden,
-                  togglePasswordVisibility,
+                CustomTextField(
+                  labelText: 'Last Name',
+                  controller: _lastNameController,
+                  isPassword: false,
                 ),
-                CustomWidgets.buildTextField(
-                  'Your Email Address*',
-                  _emailController,
-                  false,
-                  _isPasswordHidden,
-                  togglePasswordVisibility,
+                CustomTextField(
+                  labelText: 'Your Email Address*',
+                  controller: _emailController,
+                  isPassword: false,
                 ),
-                CustomWidgets.buildTextField(
-                  'Your Password',
-                  _passwordController,
-                  true,
-                  _isPasswordHidden,
-                  togglePasswordVisibility,
+                CustomTextField(
+                  labelText: 'Your Password',
+                  controller: _passwordController,
+                  isPassword: true,
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tubulert/screens/forgot_password.dart';
 import 'package:tubulert/screens/signup.dart';
 import 'package:tubulert/widget/style.dart';
@@ -16,18 +15,12 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  bool _isPasswordHidden = true;
+
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
-  }
-
-  void togglePasswordVisibility() {
-    setState(() {
-      _isPasswordHidden = !_isPasswordHidden;
-    });
   }
 
   @override
@@ -46,39 +39,40 @@ class _LoginPageState extends State<LoginPage> {
                 style: Styles.signupStyle,
               ),
               const SizedBox(height: 20),
-              CustomWidgets.buildTextField(
-                'Your Email Address',
-                _emailController,
-                false,
-                _isPasswordHidden,
-                togglePasswordVisibility,
+              CustomTextField(
+                labelText: 'Your Email Address',
+                controller: _emailController,
+                isPassword: false,
               ),
-              CustomWidgets.buildTextField(
-                'Your Password',
-                _passwordController,
-                true,
-                _isPasswordHidden,
-                togglePasswordVisibility,
+              CustomTextField(
+                labelText: 'Your Password',
+                controller: _passwordController,
+                isPassword: true,
               ),
               Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ForgotPassword()));
-                    },
-                    child: Text(
-                      'Forgot Password',
-                      style: Styles.signupPage,
-                    ),
-                  )),
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ForgotPassword(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'Forgot Password',
+                    style: Styles.signupPage,
+                  ),
+                ),
+              ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
                 },
                 child: Text(
                   'Login',
@@ -91,14 +85,17 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               TextButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignupPage()));
-                  },
-                  child: Text(
-                    'Create an Account',
-                    style: Styles.signupPage,
-                  ))
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignupPage()),
+                  );
+                },
+                child: Text(
+                  'Create an Account',
+                  style: Styles.signupPage,
+                ),
+              ),
             ],
           ),
         ),
