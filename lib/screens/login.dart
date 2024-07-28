@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tubulert/screens/forgot_password.dart';
+import 'package:tubulert/screens/home_scree.dart';
 import 'package:tubulert/screens/signup.dart';
 import 'package:tubulert/widget/style.dart';
 import 'package:tubulert/widget/textfield_widget.dart';
@@ -71,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
                   );
                 },
                 child: Text(

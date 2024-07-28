@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:timer_count_down/timer_count_down.dart';
+import 'package:tubulert/screens/resetpassword_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -111,7 +112,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
               SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () {
-                  // Verification code check logic yahan add karain
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => ResetPasswordScreen())));
                 },
                 child: Text('Verify',
                     style: GoogleFonts.poppins(
