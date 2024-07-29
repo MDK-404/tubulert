@@ -85,10 +85,13 @@ class HomeScreen extends StatelessWidget {
             icon: Icon(Icons.home),
             label: 'Home',
           ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           BottomNavigationBarItem(
             icon: Icon(Icons.camera),
             label: 'Diagnose',
           ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today_outlined), label: "Schedule"),
           BottomNavigationBarItem(
             icon: Icon(Icons.more_horiz),
             label: 'More',
