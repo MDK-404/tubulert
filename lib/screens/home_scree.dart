@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tubulert/screens/doctorscreen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -52,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                 context,
                 'assets/images/specialist_doctors.png',
                 'Specialist Doctors',
-                SpecialistDoctorsScreen(),
+                DoctorsScreen(),
               ),
             ),
             SizedBox(height: 10),
@@ -128,22 +129,6 @@ class HomeScreen extends StatelessWidget {
             MaterialPageRoute(builder: (context) => destinationScreen),
           );
         },
-      ),
-    );
-  }
-}
-
-// Define separate screens for each card
-class SpecialistDoctorsScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Specialist Doctors'),
-        backgroundColor: Colors.pink,
-      ),
-      body: Center(
-        child: Text('Specialist Doctors Screen'),
       ),
     );
   }
